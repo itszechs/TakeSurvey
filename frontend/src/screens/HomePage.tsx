@@ -36,10 +36,30 @@ export default function HomePage() {
                                 <Button
                                     className="delete-button"
                                     color="danger"
+                                    onClick={() => {
+                                        if (numberOfOptions === 2) {
+                                            alert("At least two options are required.");
+                                            return;
+                                        };
+
+                                        const options: string[] = [];
+                                        for (let i = 0; i < numberOfOptions; i++) {
+                                            const option = (document.getElementById(`option-${i}`) as HTMLInputElement).value;
+                                            options.push(option);
+                                        };
+                                        options.splice(index, 1);
+                                        setNumberOfOptions(numberOfOptions - 1);
+                                        for (let i = 0; i < options.length; i++) {
+                                            (document.getElementById(`option-${i}`) as HTMLInputElement).value = options[i];
+                                        }
+                                    }}
                                 >Delete</Button>
                             </div>
-                        ))
-                        }
+                        ))}
+                        <Button block outline
+                            color="dark"
+                            onClick={() => setNumberOfOptions(numberOfOptions + 1)}
+                        >Add option</Button>
                     </FormGroup>
                 </Form>
             </Card>
