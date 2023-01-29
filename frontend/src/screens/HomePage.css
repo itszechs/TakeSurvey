@@ -26,3 +26,20 @@
 .submit-button {
     margin: 0px 16px 8px 16px;
 }
+
+.options-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.option-input {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.delete-button {
+    margin-left: 8px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
