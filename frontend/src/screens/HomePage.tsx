@@ -5,11 +5,69 @@ import {
     Input, Label
 } from "reactstrap";
 
+import { API } from "../config/constants";
+
 import "./HomePage.css";
 
 export default function HomePage() {
     const [numberOfOptions, setNumberOfOptions] = useState(2);
     const [question, setQuestion] = useState<string>("");
+    const [isCreating, setIsCreating] = useState(false);
+
+    const getOptions = () => {
+        const options: string[] = [];
+        for (let i = 0; i < numberOfOptions; i++) {
+            const option = (document.getElementById(`option-${i}`) as HTMLInputElement).value;
+            if (option !== "") {
+                options.push(option);
+            }
+        }
+        return Array.from(new Set(options));
+    }
+
+
+    const createSurvey = () => {
+        setIsCreating(true);
+        const options = getOptions();
+
+        if (question === "") {
+            alert("Question cannot be empty.");
+            setIsCreating(false);
+            return;
+        }
+        if (options.length < 2) {
+            alert("At least two unique options are required.");
+            setIsCreating(false);
+            return;
+        }
+
+        const survey = {
+            title: question,
+            options: options
+        }
+
+        fetch(`${API.base}${API.poll}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(survey)
+        }).then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(res);
+        }).then((response) => {
+            const pollId = response.id;
+            window.location.href = `/${pollId}`;
+        }).catch(err => {
+            err.json().then((error: any) => {
+                alert(error.message)
+            });
+        }).finally(() => {
+            setIsCreating(false);
+        });
+    }
 
     return (
         <div className="home-page">
@@ -66,7 +124,7 @@ export default function HomePage() {
                     </FormGroup>
                 </Form>
             </Card>
-            <Button className="submit-button" color="primary">Create</Button>
+            <Button className="submit-button" color="primary" onClick={createSurvey}>Create</Button>
         </div >
     );
 }
