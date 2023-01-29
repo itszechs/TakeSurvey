@@ -1,0 +1,15 @@
+.home-page {
+    display: "flex";
+    flex-direction: "column";
+    width: "60vw";
+}
+
+.app-name {
+    margin: "24px 24px 8px 24px";
+}
+
+.app-description {
+    color: "#606060";
+    margin-left: "24px";
+    margin-right: "24px";
+}
