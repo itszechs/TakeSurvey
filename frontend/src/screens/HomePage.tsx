@@ -9,6 +9,7 @@ import "./HomePage.css";
 
 export default function HomePage() {
     const [numberOfOptions, setNumberOfOptions] = useState(2);
+    const [question, setQuestion] = useState<string>("");
 
     return (
         <div className="home-page">
@@ -23,7 +24,9 @@ export default function HomePage() {
                             id="question"
                             name="question"
                             placeholder="Type your question here..."
-                            type="text" />
+                            type="text"
+                            onChange={(e) => { setQuestion(e.target.value); }}
+                            value={question} />
                         <Label className="label" for="options">Options</Label>
                         {[...Array(numberOfOptions)].map((_, index) => (
                             <div className="options-container" key={index} >
