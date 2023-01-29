@@ -84,7 +84,8 @@ export default function HomePage() {
                             placeholder="Type your question here..."
                             type="text"
                             onChange={(e) => { setQuestion(e.target.value); }}
-                            value={question} />
+                            value={question}
+                            disabled={isCreating} />
                         <Label className="label" for="options">Options</Label>
                         {[...Array(numberOfOptions)].map((_, index) => (
                             <div className="options-container" key={index} >
@@ -93,10 +94,12 @@ export default function HomePage() {
                                     id={`option-${index}`}
                                     name={`option-${index}`}
                                     placeholder={`Option ${index + 1}`}
+                                    disabled={isCreating}
                                     type="text" />
                                 <Button
                                     className="delete-button"
                                     color="danger"
+                                    disabled={isCreating}
                                     onClick={() => {
                                         if (numberOfOptions === 2) {
                                             alert("At least two options are required.");
@@ -119,6 +122,7 @@ export default function HomePage() {
                         ))}
                         <Button block outline
                             color="dark"
+                            disabled={isCreating}
                             onClick={() => setNumberOfOptions(numberOfOptions + 1)}
                         >Add option</Button>
                     </FormGroup>
