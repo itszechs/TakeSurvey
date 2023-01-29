@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Progress } from "reactstrap";
 
-import "./AnimatedProgress.css";
+import "./AnimatedProgressBar.css";
 
 interface AnimatedProgressBarProps {
   finalValue: number;

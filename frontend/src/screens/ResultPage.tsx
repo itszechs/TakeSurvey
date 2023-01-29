@@ -10,7 +10,7 @@ import { API } from "../config/constants";
 import { State } from "../config/state";
 import { Poll, PollOption } from "../models/poll";
 
-import AnimatedProgressBar from "../components/AnimatedProgress";
+import AnimatedProgressBar from "../components/AnimatedProgressBar";
 
 import "./ResultPage.css";
 
