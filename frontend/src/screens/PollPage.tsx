@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Alert, Button, Spinner } from "reactstrap";
+import { Alert, Button, Fade, Spinner } from "reactstrap";
 
 import { API } from "../config/constants";
 import { State } from "../config/state";
@@ -83,25 +83,27 @@ export default function PollPage() {
         <div className="poll-container">
             {isLoading ? <Spinner className="loading-spinner" color="primary" />
                 : poll &&
-                <div className="poll">
-                    <h3>{poll?.title}</h3>
-                    <RadioGroup
-                        options={poll?.options || []}
-                        onChange={(selectedId: string) => {
-                            setSelectedOption(selectedId);
-                        }} />
-                    <Button
-                        className="submit-button"
-                        disabled={isSubmitting || hasSubmitted}
-                        color="primary"
-                        onClick={submitVote}
-                    >{isSubmitting && <Spinner
-                        className="submit-spinner"
-                        size="sm">Submitting...</Spinner>}
-                        {isSubmitting ? "Please wait..." :
-                            hasSubmitted ? "Submitted!" : "Submit"}
-                    </Button>
-                </div>
+                <Fade tag="div">
+                    <div className="poll">
+                        <h3>{poll?.title}</h3>
+                        <RadioGroup
+                            options={poll?.options || []}
+                            onChange={(selectedId: string) => {
+                                setSelectedOption(selectedId);
+                            }} />
+                        <Button
+                            className="submit-button"
+                            disabled={isSubmitting || hasSubmitted}
+                            color="primary"
+                            onClick={submitVote}
+                        >{isSubmitting && <Spinner
+                            className="submit-spinner"
+                            size="sm">Submitting...</Spinner>}
+                            {isSubmitting ? "Please wait..." :
+                                hasSubmitted ? "Submitted!" : "Submit"}
+                        </Button>
+                    </div>
+                </Fade>
             }
             {message !== "" ?
                 <Alert
