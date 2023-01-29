@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
     Alert, Badge,
-    Button, Spinner,
+    Button, Spinner, Fade,
     ListGroup, ListGroupItem
 } from "reactstrap";
 
@@ -85,33 +85,34 @@ export default function ResultPage() {
         <div className="result-container" >
             {isLoading ?
                 <Spinner className="loading-spinner" color="primary" />
-                : poll &&
-                <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    margin: "24px 16px 0px 16px",
-                    width: "60vw"
-                }}>
-                    <h3>{poll?.title}</h3>
-                    {options.map((option) => (
-                        <ListGroup key={option.title}>
-                            <ListGroupItem className="result-list-item" >{option.title}
-                                <Badge
-                                    pill
-                                    className="item-badge text-dark"
-                                    color="light"
-                                >{option.votes} vote{option.votes > 1 ? "s" : ""}
-                                </Badge>
-                                <AnimatedProgressBar duration={700} finalValue={option.percentage} />
-                            </ListGroupItem>
-                        </ListGroup>
-                    ))}
-                    <Button
-                        className="share-button"
-                        color="link"
-                        onClick={copyLink}
-                    >Share</Button>
-                </div>
+                : poll && <Fade tag="div">
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        margin: "24px 16px 0px 16px",
+                        width: "60vw"
+                    }}>
+                        <h3>{poll?.title}</h3>
+                        {options.map((option) => (
+                            <ListGroup key={option.title}>
+                                <ListGroupItem className="result-list-item" >{option.title}
+                                    <Badge
+                                        pill
+                                        className="item-badge text-dark"
+                                        color="light"
+                                    >{option.votes} vote{option.votes > 1 ? "s" : ""}
+                                    </Badge>
+                                    <AnimatedProgressBar duration={700} finalValue={option.percentage} />
+                                </ListGroupItem>
+                            </ListGroup>
+                        ))}
+                        <Button
+                            className="share-button"
+                            color="link"
+                            onClick={copyLink}
+                        >Share</Button>
+                    </div>
+                </Fade>
             }
             {message !== "" ?
                 <Alert
