@@ -1,11 +1,13 @@
 import { useState } from "react";
 import {
+    Alert,
     Button, Card,
     Form, FormGroup,
     Input, Label, Spinner
 } from "reactstrap";
 
 import { API } from "../config/constants";
+import { State } from "../config/state";
 
 import "./HomePage.css";
 
@@ -13,6 +15,8 @@ export default function HomePage() {
     const [numberOfOptions, setNumberOfOptions] = useState(2);
     const [question, setQuestion] = useState<string>("");
     const [isCreating, setIsCreating] = useState(false);
+    const [state, setState] = useState<State>(State.NONE);
+    const [message, setMessage] = useState("");
 
     const getOptions = () => {
         const options: string[] = [];
@@ -31,15 +35,20 @@ export default function HomePage() {
         const options = getOptions();
 
         if (question === "") {
-            alert("Question cannot be empty.");
+            setState(State.ERROR);
+            setMessage("Question cannot be empty.");
             setIsCreating(false);
             return;
         }
         if (options.length < 2) {
-            alert("At least two unique options are required.");
+            setState(State.ERROR);
+            setMessage("At least two unique options are required.");
             setIsCreating(false);
             return;
         }
+
+        setState(State.NONE);
+        setMessage("");
 
         const survey = {
             title: question,
@@ -58,11 +67,14 @@ export default function HomePage() {
             }
             return Promise.reject(res);
         }).then((response) => {
+            setState(State.SUCCESS);
+            setMessage("Survey created successfully.");
             const pollId = response.id;
             window.location.href = `/${pollId}`;
         }).catch(err => {
             err.json().then((error: any) => {
-                alert(error.message)
+                setState(State.ERROR);
+                setMessage(`Error creating poll.\n${error.message}}`);
             });
         }).finally(() => {
             setIsCreating(false);
@@ -136,6 +148,15 @@ export default function HomePage() {
                 {isCreating && <Spinner className="loading-spinner" size="sm">Creating...</Spinner>}
                 {isCreating ? "Please wait..." : "Create"}
             </Button>
+            {message !== "" ?
+                <Alert
+                    className="alert"
+                    color={
+                        state === State.SUCCESS ? "success" :
+                            state === State.ERROR ? "danger" : "dark"
+                    }> {message}
+                </Alert> : ""
+            }
         </div >
     );
 }
