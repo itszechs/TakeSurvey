@@ -114,9 +114,13 @@ export default function HomePage() {
                                     disabled={isCreating}
                                     onClick={() => {
                                         if (numberOfOptions === 2) {
-                                            alert("At least two options are required.");
+                                            setState(State.ERROR);
+                                            setMessage("At least two options are required.");
                                             return;
                                         };
+
+                                        setState(State.NONE);
+                                        setMessage("");
 
                                         const options: string[] = [];
                                         for (let i = 0; i < numberOfOptions; i++) {
