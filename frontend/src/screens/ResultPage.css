@@ -6,7 +6,14 @@
     width: 60vw;
 }
 
-.loading-spinner {
+.result {
+    display: flex;
+    flex-direction: column;
+    margin: 24px 16px 0px 16px;
+    width: 60vw;
+}
+
+.result-loading-spinner {
     margin: 24px;
 }
 
@@ -25,7 +32,7 @@
     margin-top: 12px;
 }
 
-.alert {
+.result-alert {
     margin: 16px;
     width: inherit;
 }

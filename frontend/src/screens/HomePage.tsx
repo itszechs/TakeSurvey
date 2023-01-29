@@ -1,3 +1,5 @@
+import "./HomePage.css";
+
 import { useState } from "react";
 import {
     Alert,
@@ -9,7 +11,6 @@ import {
 import { API } from "../config/constants";
 import { State } from "../config/state";
 
-import "./HomePage.css";
 
 export default function HomePage() {
     const [numberOfOptions, setNumberOfOptions] = useState(2);
@@ -145,16 +146,16 @@ export default function HomePage() {
                 </Form>
             </Card>
             <Button
-                className="submit-button"
+                className="home-submit-button"
                 color="primary"
                 disabled={isCreating}
                 onClick={createSurvey} >
-                {isCreating && <Spinner className="loading-spinner" size="sm">Creating...</Spinner>}
+                {isCreating && <Spinner className="home-submit-spinner" size="sm">Creating...</Spinner>}
                 {isCreating ? "Please wait..." : "Create"}
             </Button>
             {message !== "" ?
                 <Alert
-                    className="alert"
+                    className="home-alert"
                     color={
                         state === State.SUCCESS ? "success" :
                             state === State.ERROR ? "danger" : "dark"

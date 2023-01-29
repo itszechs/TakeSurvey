@@ -1,3 +1,5 @@
+import "./ResultPage.css";
+
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
@@ -11,8 +13,6 @@ import { State } from "../config/state";
 import { Poll, PollOption } from "../models/poll";
 
 import AnimatedProgressBar from "../components/AnimatedProgressBar";
-
-import "./ResultPage.css";
 
 interface Option {
     title: string;
@@ -84,14 +84,9 @@ export default function ResultPage() {
     return (
         <div className="result-container" >
             {isLoading ?
-                <Spinner className="loading-spinner" color="primary" />
+                <Spinner className="result-loading-spinner" color="primary" />
                 : poll && <Fade tag="div">
-                    <div style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        margin: "24px 16px 0px 16px",
-                        width: "60vw"
-                    }}>
+                    <div className="result">
                         <h3>{poll?.title}</h3>
                         {options.map((option) => (
                             <ListGroup key={option.title}>
@@ -116,7 +111,7 @@ export default function ResultPage() {
             }
             {message !== "" ?
                 <Alert
-                    className="alert"
+                    className="result-alert "
                     color={
                         state === State.SUCCESS ? "success" :
                             state === State.ERROR ? "danger" : "dark"

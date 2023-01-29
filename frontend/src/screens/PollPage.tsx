@@ -1,3 +1,5 @@
+import "./PollPage.css";
+
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Alert, Button, Fade, Spinner } from "reactstrap";
@@ -8,7 +10,6 @@ import { Poll } from "../models/poll";
 
 import RadioGroup from "../components/RadioGroup";
 
-import "./PollPage.css";
 
 export default function PollPage() {
     let { pollId } = useParams();
@@ -94,12 +95,12 @@ export default function PollPage() {
                                 setSelectedOption(selectedId);
                             }} />
                         <Button
-                            className="submit-button"
+                            className="poll-submit-button"
                             disabled={isSubmitting || hasSubmitted}
                             color="primary"
                             onClick={submitVote}
                         >{isSubmitting && <Spinner
-                            className="submit-spinner"
+                            className="poll-submit-spinner"
                             size="sm">Submitting...</Spinner>}
                             {isSubmitting ? "Please wait..." :
                                 hasSubmitted ? "Submitted!" : "Submit"}
@@ -109,7 +110,7 @@ export default function PollPage() {
             }
             {message !== "" ?
                 <Alert
-                    className="alert"
+                    className="result-alert"
                     color={
                         state === State.SUCCESS ? "success" :
                             state === State.ERROR ? "danger" : "dark"

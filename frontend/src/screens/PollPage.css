@@ -6,7 +6,7 @@
     width: 60vw;
 }
 
-.loading-spinner {
+.poll-loading-spinner {
     margin: 24px;
 }
 
@@ -16,16 +16,16 @@
     margin: 24px;
 }
 
-.submit-button {
+.poll-submit-button {
     margin-top: 12px;
     border-radius: 12px;
 }
 
-.submit-spinner {
+.poll-submit-spinner {
     margin-right: 8px;
 }
 
-.alert {
+.result-alert {
     width: inherit;
 
 }

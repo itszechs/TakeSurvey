@@ -24,7 +24,7 @@
     margin-top: 16px;
 }
 
-.submit-button {
+.home-submit-button {
     margin-top: 8px;
     margin-bottom: 8px;
 }
@@ -46,10 +46,10 @@
     margin-bottom: 4px;
 }
 
-.loading-spinner {
+.home-submit-spinner {
     margin-right: 8px;
 }
 
-.alert {
+.alert-home {
     width: inherit;
 }
