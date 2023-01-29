@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
     Button, Card,
     Form, FormGroup,
-    Input, Label
+    Input, Label, Spinner
 } from "reactstrap";
 
 import { API } from "../config/constants";
@@ -124,7 +124,14 @@ export default function HomePage() {
                     </FormGroup>
                 </Form>
             </Card>
-            <Button className="submit-button" color="primary" onClick={createSurvey}>Create</Button>
+            <Button
+                className="submit-button"
+                color="primary"
+                disabled={isCreating}
+                onClick={createSurvey} >
+                {isCreating && <Spinner className="loading-spinner" size="sm">Creating...</Spinner>}
+                {isCreating ? "Please wait..." : "Create"}
+            </Button>
         </div >
     );
 }
