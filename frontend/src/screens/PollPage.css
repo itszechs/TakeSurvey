@@ -1,0 +1,31 @@
+.poll-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60vw;
+}
+
+.loading-spinner {
+    margin: 24px;
+}
+
+.poll {
+    display: flex;
+    flex-direction: column;
+    margin: 24px;
+}
+
+.submit-button {
+    margin-top: 12px;
+    border-radius: 12px;
+}
+
+.submit-spinner {
+    margin-right: 8px;
+}
+
+.alert {
+    width: inherit;
+
+}

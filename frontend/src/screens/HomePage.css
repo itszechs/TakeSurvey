@@ -1,0 +1,55 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+}
+
+.app-name {
+    margin-top: 24px;
+    margin-bottom: 8px;
+}
+
+.app-description {
+    color: #606060;
+    margin-bottom: 16px;
+}
+
+.form-card {
+    padding: 24px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.label {
+    margin-top: 16px;
+}
+
+.submit-button {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.option-input {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.delete-button {
+    margin-left: 8px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.loading-spinner {
+    margin-right: 8px;
+}
+
+.alert {
+    width: inherit;
+}
