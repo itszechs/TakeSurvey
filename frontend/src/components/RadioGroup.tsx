@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Label, Input, ListGroupItem, ListGroup } from "reactstrap";
 import { PollOption } from "../models/poll";
 
+import "./RadioGroup.css";
+
 interface Props {
     options: PollOption[],
     onChange: (value: string) => void;

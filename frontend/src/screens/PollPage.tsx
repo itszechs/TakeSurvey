@@ -8,6 +8,8 @@ import { Poll } from "../models/poll";
 
 import RadioGroup from "../components/RadioGroup";
 
+import "./PollPage.css";
+
 export default function PollPage() {
     let { pollId } = useParams();
     const [isLoading, setIsLoading] = useState(true);
